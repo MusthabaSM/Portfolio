@@ -15,9 +15,7 @@ export default function Contact() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="glass-card rounded-3xl md:rounded-[3rem] p-6 sm:p-10 md:p-20 relative overflow-hidden text-center group"
         >
-          {/* Enhanced Background Glows */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-sky-400/20 blur-[120px] opacity-60 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-sky-400/20 blur-[120px] opacity-60 pointer-events-none" />
+          {/* Enhanced Background Glows Removed */}
 
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 border border-black/5 dark:border-white/10 mb-8 mx-auto">

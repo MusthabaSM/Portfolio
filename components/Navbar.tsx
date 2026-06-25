@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTheme } from "next-themes";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -10,19 +10,56 @@ export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  
+  const lastScrollY = useRef(0);
+  const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setMounted(true);
+    lastScrollY.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < 50) {
+        setIsVisible(true);
+        if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
+      } else if (currentScrollY < lastScrollY.current) {
+        setIsVisible(true);
+        if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
+        
+        hideTimeoutRef.current = setTimeout(() => {
+          if (window.scrollY >= 50) {
+            setIsVisible(false);
+            setIsMobileMenuOpen(false);
+          }
+        }, 2000);
+      } else if (currentScrollY > lastScrollY.current) {
+        setIsVisible(false);
+        setIsMobileMenuOpen(false);
+        if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
+    };
   }, []);
 
   return (
     <motion.div 
       initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      animate={{ y: isVisible ? 0 : -150, opacity: isVisible ? 1 : 0 }}
+      transition={{ duration: 0.9, ease: "easeInOut" }}
       className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[800px] px-4 md:px-6"
     >
-      <div className="glass-card rounded-full px-6 py-3 mx-auto shadow-lg border border-black/5 dark:border-white/10 relative z-50">
+      <div className="bg-white dark:bg-slate-900 rounded-full px-6 py-3 mx-auto shadow-lg border border-black/5 dark:border-white/10 relative z-50">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="font-bold text-sm md:text-base tracking-widest text-slate-900 dark:text-white">
@@ -72,7 +109,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-[120%] left-4 right-4 bg-white/98 dark:bg-slate-900/98 backdrop-blur-3xl rounded-[2rem] p-6 shadow-2xl border border-black/5 dark:border-white/10 flex flex-col gap-4 md:hidden"
+            className="absolute top-[120%] left-4 right-4 bg-white dark:bg-slate-900 rounded-[2rem] p-6 shadow-2xl border border-black/5 dark:border-white/10 flex flex-col gap-4 md:hidden"
           >
             <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-800 dark:text-slate-200 font-medium hover:text-blue-500 transition-colors">About</a>
             <a href="#skills" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-800 dark:text-slate-200 font-medium hover:text-blue-500 transition-colors">Skills</a>

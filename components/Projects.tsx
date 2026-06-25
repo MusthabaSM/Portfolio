@@ -124,36 +124,40 @@ export default function Projects() {
                 <div className="relative aspect-[16/10] rounded-[1.5rem] p-1 glass-card shadow-2xl transition-all duration-500 hover:shadow-blue-500/10">
                   <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent dark:from-white/5 z-10 rounded-[1.5rem] pointer-events-none" />
                   
-                  {/* Window Bar */}
-                  <div className="absolute top-0 inset-x-0 h-10 border-b border-black/5 dark:border-white/10 flex items-center px-4 gap-2 z-20">
-                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-red-400/80" />
-                      <div className="w-3 h-3 rounded-full bg-amber-400/80" />
-                      <div className="w-3 h-3 rounded-full bg-green-400/80" />
-                    </div>
-                  </div>
-
                   {/* Mock Content Area */}
-                  <div className="w-full h-full rounded-[1.2rem] overflow-hidden relative bg-slate-100 dark:bg-slate-900">
-                    {project.images && project.images.length > 0 ? (
-                      <ProjectSlideshow images={project.images} title={project.title} />
-                    ) : project.image ? (
-                      <img 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="absolute inset-0 w-full h-full object-cover object-center" 
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center px-6">
-                          <div className="w-16 h-16 rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md mb-4 mx-auto flex items-center justify-center border border-white/30">
-                            <FiExternalLink className="text-slate-800 dark:text-white w-8 h-8 opacity-70" />
-                          </div>
-                          <p className="text-slate-800 dark:text-white font-medium opacity-80 tracking-wide">Application Preview</p>
-                          <p className="text-xs text-slate-700 dark:text-white/60 mt-2 max-w-[250px] mx-auto">Design ready for future screenshot integration.</p>
-                        </div>
+                  <div className="w-full h-full rounded-[1.2rem] overflow-hidden relative bg-slate-100 dark:bg-slate-900 flex flex-col">
+                    
+                    {/* Window Bar */}
+                    <div className="h-10 border-b border-black/5 dark:border-white/10 bg-black/5 dark:bg-white/5 flex items-center px-4 gap-2 z-20 shrink-0 w-full">
+                      <div className="flex gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-red-400/80" />
+                        <div className="w-3 h-3 rounded-full bg-amber-400/80" />
+                        <div className="w-3 h-3 rounded-full bg-green-400/80" />
                       </div>
-                    )}
+                    </div>
+
+                    {/* Image Area */}
+                    <div className="relative w-full h-full flex-grow">
+                      {project.images && project.images.length > 0 ? (
+                        <ProjectSlideshow images={project.images} title={project.title} />
+                      ) : project.image ? (
+                        <img 
+                          src={project.image} 
+                          alt={project.title} 
+                          className="absolute inset-0 w-full h-full object-cover object-center" 
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="text-center px-6">
+                            <div className="w-16 h-16 rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md mb-4 mx-auto flex items-center justify-center border border-white/30">
+                              <FiExternalLink className="text-slate-800 dark:text-white w-8 h-8 opacity-70" />
+                            </div>
+                            <p className="text-slate-800 dark:text-white font-medium opacity-80 tracking-wide">Application Preview</p>
+                            <p className="text-xs text-slate-700 dark:text-white/60 mt-2 max-w-[250px] mx-auto">Design ready for future screenshot integration.</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -223,9 +227,19 @@ export default function Projects() {
                     visible: { y: 0, opacity: 1 }
                   }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className="glass-card rounded-[2rem] p-8 md:p-10 floating-card group flex flex-col h-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl"
+                  className="glass-card rounded-[2rem] p-8 md:p-10 pt-12 md:pt-14 floating-card group flex flex-col h-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl relative overflow-hidden"
                 >
                   <div className="mock-window-glow" />
+                  
+                  {/* Window Bar */}
+                  <div className="absolute top-0 inset-x-0 h-10 border-b border-black/5 dark:border-white/10 bg-black/5 dark:bg-white/5 flex items-center px-5 gap-2 z-20">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-400/80" />
+                      <div className="w-3 h-3 rounded-full bg-amber-400/80" />
+                      <div className="w-3 h-3 rounded-full bg-green-400/80" />
+                    </div>
+                  </div>
+
                   <h4 className="text-xl font-bold text-slate-900 dark:text-white">
                     {project.title}
                   </h4>

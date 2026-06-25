@@ -30,9 +30,9 @@
 
   --glass-inner-border: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
-  --blue-glow: rgba(59, 130, 246, 0.2);
+  --blue-glow: rgba(255, 255, 255, 0.05);
 
-  --cyan-glow: rgba(34, 211, 238, 0.15);
+  --cyan-glow: rgba(255, 255, 255, 0.03);
 
   --grid-color: rgba(255, 255, 255, 0.02);
 }

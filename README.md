@@ -1,3 +1,27 @@
+# Mohamed Musthaba S M — Portfolio
+
+A premium 2.5D developer portfolio showcasing my software development, AI/ML, blockchain, and full-stack projects.
+
+## 🌐 Live Demo
+
+**Website:** https://musthaba-portfolio.vercel.app
+
+## Tech Stack
+
+* Next.js
+* TypeScript
+* Tailwind CSS
+* Framer Motion
+
+## Features
+
+* Modern 2.5D UI
+* Responsive Design
+* Dark & Light Mode
+* Premium Animations
+* Project Showcase
+* Recruiter-Friendly Layout
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

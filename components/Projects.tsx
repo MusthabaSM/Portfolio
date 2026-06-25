@@ -83,6 +83,15 @@ const secondaryProjects = [
 ];
 
 export default function Projects() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <section id="projects" className="py-2 md:py-10 px-6 relative z-10">
       <div className="max-w-7xl mx-auto">
@@ -208,7 +217,9 @@ export default function Projects() {
               >
                 <motion.div
                   variants={{
-                    hidden: { y: index === 0 ? 40 : "-110%", opacity: index === 0 ? 0 : 1 },
+                    hidden: isMobile 
+                      ? { y: index === 0 ? 40 : "-110%", opacity: index === 0 ? 0 : 1 }
+                      : { y: 40, opacity: 0 },
                     visible: { y: 0, opacity: 1 }
                   }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}

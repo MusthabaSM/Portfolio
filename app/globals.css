@@ -1,26 +1,164 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode in Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;
+  --foreground: #111111;
+
+  --card: rgba(255, 255, 255, 0.6);
+  --card-border: rgba(0, 0, 0, 0.05);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  
+  --glass-inner-border: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  --blue-glow: rgba(59, 130, 246, 0.15);
+
+  --cyan-glow: rgba(34, 211, 238, 0.1);
+
+  --grid-color: rgba(0, 0, 0, 0.03);
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+
+  --card: rgba(20, 20, 20, 0.4);
+  --card-border: rgba(255, 255, 255, 0.06);
+  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+
+  --glass-inner-border: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  --blue-glow: rgba(59, 130, 246, 0.2);
+
+  --cyan-glow: rgba(34, 211, 238, 0.15);
+
+  --grid-color: rgba(255, 255, 255, 0.02);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 300ms ease, color 300ms ease;
+  font-family: var(--font-sans), sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Engineering Grid Background */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+/* Ambient Background Glows */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  border-radius: 9999px;
+  filter: blur(140px);
+  z-index: -2;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+body::before {
+  width: 600px;
+  height: 600px;
+  left: -150px;
+  top: -150px;
+  background: var(--blue-glow);
+}
+
+body::after {
+  width: 500px;
+  height: 500px;
+  right: -100px;
+  bottom: -100px;
+  background: var(--blue-glow);
+}
+
+/* Premium Glass Card (2.5D Effect) */
+.glass-card {
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow), var(--glass-inner-border);
+  border-radius: 24px;
+}
+
+.dark .glass-card {
+  /* Richer inner shadow for dark mode depth */
+  box-shadow: var(--card-shadow), var(--glass-inner-border), inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Elegant Floating Card Hover (Linear/Vercel Style) */
+.floating-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease;
+  will-change: transform, box-shadow;
+}
+
+.floating-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .floating-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
+              var(--glass-inner-border), 
+              0 0 40px rgba(59, 130, 246, 0.1);
+}
+
+/* Vercel-style refined gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle glow layer for mock windows */
+.mock-window-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.3), rgba(168, 85, 247, 0.1), transparent);
+  z-index: -1;
+  filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.glass-card:hover .mock-window-glow {
+  opacity: 1;
 }

@@ -16,6 +16,7 @@ export default function Navbar() {
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     lastScrollY.current = window.scrollY;
 

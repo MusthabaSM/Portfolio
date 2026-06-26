@@ -16,6 +16,7 @@ export default function SpaceBackground() {
       duration: Math.random() * 3 + 2,
       delay: Math.random() * 5,
     }));
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setStars(newStars);
   }, []);
 
@@ -49,10 +50,6 @@ export default function SpaceBackground() {
         />
       ))}
 
- 
-      {/* Subtle Space Nebulae (Neutral/Dark only) */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-zinc-800/20 rounded-full blur-[120px]" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-neutral-800/20 rounded-full blur-[150px]" />
     </div>
   );
 }

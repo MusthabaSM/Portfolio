@@ -26,18 +26,18 @@ export default function Contact() {
             </div>
 
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
-              Let's Build <br className="hidden md:block" />
+              Let&apos;s Build <br className="hidden md:block" />
               <span className="gradient-text">Something Great</span>
             </h2>
 
             <p className="mt-4 md:mt-6 max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 font-light leading-relaxed">
-              I'm actively looking for software development opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+              I&apos;m actively looking for software development opportunities. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
             </p>
 
-            <div className="grid grid-cols-3 gap-3 md:gap-6 mt-10 md:mt-16 max-w-3xl mx-auto">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-6 mt-10 md:mt-16 max-w-3xl mx-auto">
               <a
                 href="mailto:smmusthaba04@gmail.com"
-                className="glass-card rounded-2xl md:rounded-[1.5rem] p-4 md:p-6 floating-card text-center group/card relative overflow-hidden flex flex-col items-center justify-center"
+                className="glass-card rounded-2xl md:rounded-[1.5rem] p-2 sm:p-4 md:p-6 floating-card text-center group/card relative overflow-hidden flex flex-col items-center justify-center"
               >
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-red-500/10 text-red-500 dark:text-red-400 flex items-center justify-center mx-auto mb-2 md:mb-4 group-hover/card:scale-110 group-hover/card:bg-red-500 group-hover/card:text-white transition-all duration-300">
                   <MdEmail size={20} className="md:w-6 md:h-6" />
@@ -50,7 +50,7 @@ export default function Contact() {
                 href="https://github.com/MusthabaSM"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-card rounded-2xl md:rounded-[1.5rem] p-4 md:p-6 floating-card text-center group/card relative overflow-hidden flex flex-col items-center justify-center"
+                className="glass-card rounded-2xl md:rounded-[1.5rem] p-2 sm:p-4 md:p-6 floating-card text-center group/card relative overflow-hidden flex flex-col items-center justify-center"
               >
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-900/10 text-slate-900 dark:bg-white/10 dark:text-white flex items-center justify-center mx-auto mb-2 md:mb-4 group-hover/card:scale-110 group-hover/card:bg-slate-900 dark:group-hover/card:bg-white group-hover/card:text-white dark:group-hover/card:text-slate-900 transition-all duration-300">
                   <FaGithub size={20} className="md:w-6 md:h-6" />
@@ -63,7 +63,7 @@ export default function Contact() {
                 href="https://linkedin.com/in/mohamed-musthaba"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-card rounded-2xl md:rounded-[1.5rem] p-4 md:p-6 floating-card text-center group/card relative overflow-hidden flex flex-col items-center justify-center"
+                className="glass-card rounded-2xl md:rounded-[1.5rem] p-2 sm:p-4 md:p-6 floating-card text-center group/card relative overflow-hidden flex flex-col items-center justify-center"
               >
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-600/10 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto mb-2 md:mb-4 group-hover/card:scale-110 group-hover/card:bg-blue-600 group-hover/card:text-white transition-all duration-300">
                   <FaLinkedinIn size={20} className="md:w-6 md:h-6" />

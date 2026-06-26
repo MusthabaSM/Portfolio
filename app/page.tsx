@@ -12,16 +12,13 @@ export default function Home() {
      <Navbar />
 
 <Hero />
-
-<Projects />
-
-<Skills />
-
-<About />
-
-<Contact />
-
-<Footer />
+      <div className="max-sm:-mt-[30vh] relative z-30">
+        <Projects />
+        <Skills />
+        <About />
+        <Contact />
+        <Footer />
+      </div>
     </>
   );
 }

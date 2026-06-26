@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
 
@@ -27,7 +27,7 @@ const ProjectSlideshow = ({ images, title }: { images: string[], title: string }
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover max-sm:object-contain object-center"
         />
       </AnimatePresence>
     </div>
@@ -84,6 +84,14 @@ const secondaryProjects = [
 
 export default function Projects() {
   const [isMobile, setIsMobile] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 80%", "end 80%"]
+  });
+  
+  const mobileY = useTransform(scrollYProgress, [0, 1], ["-110%", "0%"]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -144,7 +152,7 @@ export default function Projects() {
                         <img 
                           src={project.image} 
                           alt={project.title} 
-                          className="absolute inset-0 w-full h-full object-cover object-center" 
+                          className="absolute inset-0 w-full h-full object-cover max-sm:object-contain object-center" 
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center">
@@ -209,7 +217,7 @@ export default function Projects() {
             </h3>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+          <div ref={containerRef} className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
             {secondaryProjects.map((project, index) => (
               <motion.div
                 key={project.title}
@@ -220,11 +228,14 @@ export default function Projects() {
                 className="h-full"
               >
                 <motion.div
+                  style={isMobile && index === 1 ? { y: mobileY } : {}}
                   variants={{
-                    hidden: isMobile 
-                      ? { y: index === 0 ? 40 : "-110%", opacity: index === 0 ? 0 : 1 }
+                    hidden: isMobile && index === 1 
+                      ? { opacity: 1 } 
                       : { y: 40, opacity: 0 },
-                    visible: { y: 0, opacity: 1 }
+                    visible: isMobile && index === 1 
+                      ? { opacity: 1 } 
+                      : { y: 0, opacity: 1 }
                   }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   className="glass-card rounded-[2rem] p-8 md:p-10 pt-12 md:pt-14 floating-card group flex flex-col h-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl relative overflow-hidden"

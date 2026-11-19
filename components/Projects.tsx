@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
@@ -12,23 +13,30 @@ const ProjectSlideshow = ({ images, title }: { images: string[], title: string }
     if (images.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 2000); // 2 seconds per image
+    }, 3000);
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden">
-      <AnimatePresence>
-        <motion.img
+      <AnimatePresence mode="sync">
+        <motion.div
           key={currentIndex}
-          src={images[currentIndex]}
-          alt={`${title} screenshot ${currentIndex + 1}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute inset-0 w-full h-full object-cover max-sm:object-contain object-center"
-        />
+          className="absolute inset-0 w-full h-full"
+        >
+          <Image
+            src={images[currentIndex]}
+            alt={`${title} screenshot ${currentIndex + 1}`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
+            className="object-cover max-sm:object-contain object-center"
+            loading="lazy"
+          />
+        </motion.div>
       </AnimatePresence>
     </div>
   );
@@ -55,7 +63,7 @@ const featuredProjects: ProjectData[] = [
     badge: "Flagship Project",
     color: "from-blue-500/20 to-cyan-500/20",
     borderColor: "border-blue-500/20",
-    images: ["/project_xai.png", "/project_xai_2.png", "/project_xai_3.png"]
+    images: ["/project_xai.webp", "/project_xai_2.webp", "/project_xai_3.webp"]
   },
   {
     title: "Decentralized Voting System",
@@ -65,7 +73,7 @@ const featuredProjects: ProjectData[] = [
     badge: "Flagship Project",
     color: "from-slate-800/20 to-black/20",
     borderColor: "border-black/30 dark:border-white/20",
-    images: ["/project_dvs_1.png", "/project_dvs_2.png", "/project_dvs_3.png", "/project_dvs_4.png"]
+    images: ["/project_dvs_1.webp", "/project_dvs_2.webp", "/project_dvs_3.webp", "/project_dvs_4.webp"]
   },
 ];
 
@@ -149,10 +157,13 @@ export default function Projects() {
                       {project.images && project.images.length > 0 ? (
                         <ProjectSlideshow images={project.images} title={project.title} />
                       ) : project.image ? (
-                        <img 
+                        <Image 
                           src={project.image} 
                           alt={project.title} 
-                          className="absolute inset-0 w-full h-full object-cover max-sm:object-contain object-center" 
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
+                          className="object-cover max-sm:object-contain object-center" 
+                          loading="lazy"
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center">
@@ -198,6 +209,7 @@ export default function Projects() {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`View ${project.title} repository on GitHub`}
                     className="group relative inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-slate-900 bg-white dark:bg-slate-900 dark:text-white border border-slate-200 dark:border-white/20 transition-all duration-200 rounded-full hover:scale-105 shadow-sm hover:shadow-md"
                   >
                     <FaGithub className="w-5 h-5" />
@@ -259,7 +271,7 @@ export default function Projects() {
                   </p>
                   <div className="flex flex-wrap gap-2 mt-8">
                     {project.tech.map((item) => (
-                      <span key={item} className="text-xs font-medium text-slate-500 dark:text-slate-500">
+                      <span key={item} className="text-xs font-medium text-slate-600 dark:text-slate-400">
                         {item} {project.tech[project.tech.length -1] !== item && "•"}
                       </span>
                     ))}

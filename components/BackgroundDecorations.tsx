@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function BackgroundDecorations() {
   return (
-    <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none opacity-30 dark:opacity-20">
+    <div aria-hidden="true" className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none opacity-30 dark:opacity-20">
       
       {/* Top Left: Tech Dots Pattern */}
       <div className="absolute top-10 left-10 w-64 h-64 opacity-40">

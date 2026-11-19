@@ -7,8 +7,10 @@ export default function SpaceBackground() {
   const [stars, setStars] = useState<{ id: number; x: number; y: number; size: number; duration: number; delay: number }[]>([]);
 
   useEffect(() => {
-    // Generate static stars once on mount to avoid hydration mismatch
-    const newStars = Array.from({ length: 150 }).map((_, i) => ({
+    // Generate stars once on mount to avoid hydration mismatch
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const count = isMobile ? 60 : 120;
+    const newStars = Array.from({ length: count }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -21,7 +23,7 @@ export default function SpaceBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[-2] hidden dark:block overflow-hidden bg-black pointer-events-none">
+    <div aria-hidden="true" className="fixed inset-0 z-[-2] hidden dark:block overflow-hidden bg-black pointer-events-none">
       {/* Deep Space Background Overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-950 via-black to-black opacity-100" />
       

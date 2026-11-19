@@ -45,6 +45,7 @@ export default function Skills() {
             {[...skillCategories, ...skillCategories].map((category, index) => (
               <motion.div
                 key={`${category.title}-${index}`}
+                aria-hidden={index >= skillCategories.length}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

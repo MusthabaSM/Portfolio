@@ -63,12 +63,12 @@ export default function Navbar() {
       <div className="bg-white dark:bg-slate-900 rounded-full px-6 py-3 mx-auto shadow-lg border border-black/5 dark:border-white/10 relative z-50">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="font-bold text-sm md:text-base tracking-widest text-slate-900 dark:text-white">
+            <span className="font-bold text-sm md:text-base tracking-widest text-slate-900 dark:text-white">
               MUSTHABA
-            </h1>
+            </span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+          <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
             <a href="#about" className="hover:text-blue-500 transition-colors">About</a>
             <a href="#skills" className="hover:text-blue-500 transition-colors">Skills</a>
             <a href="#projects" className="hover:text-blue-500 transition-colors">Projects</a>
@@ -76,25 +76,27 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <a href="https://github.com/MusthabaSM" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"><FaGithub size={18} /></a>
-            <a href="https://linkedin.com/in/mohamed-musthaba" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"><FaLinkedinIn size={18} /></a>
+            <a href="https://github.com/MusthabaSM" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"><FaGithub size={18} /></a>
+            <a href="https://linkedin.com/in/mohamed-musthaba" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"><FaLinkedinIn size={18} /></a>
             {mounted && (
-              <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center text-sm border border-black/5 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors">
+              <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"} className="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center text-sm border border-black/5 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors">
                 {theme === "dark" ? "☀️" : "🌙"}
               </button>
             )}
           </div>
           
           {/* Mobile Toggle & Theme */}
-          <div className="flex md:hidden items-center gap-4">
+          <div className="flex md:hidden items-center gap-2">
             {mounted && (
-              <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center text-sm border border-black/5 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors">
+              <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"} className="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center text-sm border border-black/5 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors">
                 {theme === "dark" ? "☀️" : "🌙"}
               </button>
             )}
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-slate-600 dark:text-slate-300 hover:text-blue-500 outline-none"
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMobileMenuOpen}
+              className="text-slate-600 dark:text-slate-300 hover:text-blue-500 outline-none p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -120,8 +122,8 @@ export default function Navbar() {
             <div className="h-px w-full bg-black/5 dark:bg-white/10 my-2" />
             
             <div className="flex gap-5 items-center">
-              <a href="https://github.com/MusthabaSM" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors"><FaGithub size={22} /></a>
-              <a href="https://linkedin.com/in/mohamed-musthaba" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors"><FaLinkedinIn size={22} /></a>
+              <a href="https://github.com/MusthabaSM" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors"><FaGithub size={22} /></a>
+              <a href="https://linkedin.com/in/mohamed-musthaba" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors"><FaLinkedinIn size={22} /></a>
             </div>
           </motion.div>
         )}

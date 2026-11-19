@@ -37,6 +37,7 @@ export default function Contact() {
             <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-6 mt-10 md:mt-16 max-w-3xl mx-auto">
               <a
                 href="mailto:smmusthaba04@gmail.com"
+                aria-label="Send email to smmusthaba04@gmail.com"
                 className="glass-card rounded-2xl md:rounded-[1.5rem] p-2 sm:p-4 md:p-6 floating-card text-center group/card relative overflow-hidden flex flex-col items-center justify-center"
               >
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-red-500/10 text-red-500 dark:text-red-400 flex items-center justify-center mx-auto mb-2 md:mb-4 group-hover/card:scale-110 group-hover/card:bg-red-500 group-hover/card:text-white transition-all duration-300">
@@ -50,6 +51,7 @@ export default function Contact() {
                 href="https://github.com/MusthabaSM"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Visit GitHub Profile (@MusthabaSM)"
                 className="glass-card rounded-2xl md:rounded-[1.5rem] p-2 sm:p-4 md:p-6 floating-card text-center group/card relative overflow-hidden flex flex-col items-center justify-center"
               >
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-900/10 text-slate-900 dark:bg-white/10 dark:text-white flex items-center justify-center mx-auto mb-2 md:mb-4 group-hover/card:scale-110 group-hover/card:bg-slate-900 dark:group-hover/card:bg-white group-hover/card:text-white dark:group-hover/card:text-slate-900 transition-all duration-300">
@@ -63,6 +65,7 @@ export default function Contact() {
                 href="https://linkedin.com/in/mohamed-musthaba"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Visit LinkedIn Profile (Mohamed Musthaba)"
                 className="glass-card rounded-2xl md:rounded-[1.5rem] p-2 sm:p-4 md:p-6 floating-card text-center group/card relative overflow-hidden flex flex-col items-center justify-center"
               >
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-600/10 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto mb-2 md:mb-4 group-hover/card:scale-110 group-hover/card:bg-blue-600 group-hover/card:text-white transition-all duration-300">

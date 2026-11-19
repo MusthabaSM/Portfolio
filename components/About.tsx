@@ -76,7 +76,7 @@ export default function About() {
                   transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute w-[47%] h-[47%] glass-card rounded-[2rem] p-4 sm:p-6 floating-card group flex flex-col justify-center"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/50 dark:bg-white/5 border border-black/5 dark:border-white/10 flex items-center justify-center text-xl sm:text-2xl mb-3 sm:mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <div aria-hidden="true" className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/50 dark:bg-white/5 border border-black/5 dark:border-white/10 flex items-center justify-center text-xl sm:text-2xl mb-3 sm:mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
                     {item.icon}
                   </div>
                   <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">

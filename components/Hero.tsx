@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { useState, useEffect } from "react";
@@ -78,10 +79,14 @@ export default function Hero() {
               AI / ML
             </motion.div>
 
-            <img
-              src="/profile2_nobg.png"
-              alt="Mohamed Musthaba"
-              className="w-full max-w-[400px] sm:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.3)] relative z-10 max-sm:scale-[1.20] lg:scale-125 xl:scale-125 origin-bottom translate-y-8 lg:translate-y-16 xl:translate-y-24"
+            <Image
+              src="/profile2_nobg.webp"
+              alt="Mohamed Musthaba S M - Software Developer"
+              width={700}
+              height={467}
+              priority
+              sizes="(max-width: 640px) 400px, (max-width: 1024px) 500px, 700px"
+              className="w-full max-w-[400px] sm:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] h-auto object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.3)] relative z-10 max-sm:scale-[1.20] lg:scale-125 xl:scale-125 origin-bottom translate-y-8 lg:translate-y-16 xl:translate-y-24"
             />
 
             <div className="absolute top-[30%] sm:top-[30%] lg:top-[30%] translate-y-8 lg:translate-y-16 xl:translate-y-24 rotate-[350deg] lg:rotate-[352deg] z-20 w-full flex flex-col items-center justify-center pointer-events-none gap-2 sm:gap-4 lg:gap-5">
@@ -91,13 +96,30 @@ export default function Hero() {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="flex flex-wrap justify-center gap-3 sm:gap-4 pointer-events-auto scale-[0.8] max-sm:scale-[0.65] sm:scale-90 lg:scale-100 max-sm:-mt-1 max-sm:rotate-2"
               >
-                <a href="/Musthaba_Resume.pdf" download="Musthaba_Resume.pdf" className="px-5 py-2 sm:px-6 sm:py-2.5 bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 text-white font-medium rounded-full shadow-lg hover:scale-105 transition-transform flex items-center justify-center border border-white/10 shadow-blue-500/30">
+                <a
+                  href="/Musthaba_Resume.pdf"
+                  download="Musthaba_Resume.pdf"
+                  aria-label="Download Mohamed Musthaba Resume (PDF)"
+                  className="px-5 py-2 sm:px-6 sm:py-2.5 bg-blue-600 dark:bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-500 text-white font-medium rounded-full shadow-lg hover:scale-105 transition-transform flex items-center justify-center border border-white/10 shadow-blue-500/30"
+                >
                   Download CV
                 </a>
-                <a href="https://github.com/MusthabaSM" target="_blank" rel="noopener noreferrer" className="p-2 sm:p-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full hover:scale-110 transition-transform shadow-lg">
+                <a
+                  href="https://github.com/MusthabaSM"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub Profile"
+                  className="p-2 sm:p-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full hover:scale-110 transition-transform shadow-lg"
+                >
                   <FaGithub size={20} />
                 </a>
-                <a href="https://linkedin.com/in/mohamed-musthaba" target="_blank" rel="noopener noreferrer" className="p-2 sm:p-3 bg-[#0A66C2] text-white rounded-full hover:scale-110 transition-transform shadow-lg shadow-blue-500/30">
+                <a
+                  href="https://linkedin.com/in/mohamed-musthaba"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn Profile"
+                  className="p-2 sm:p-3 bg-[#0A66C2] text-white rounded-full hover:scale-110 transition-transform shadow-lg shadow-blue-500/30"
+                >
                   <FaLinkedinIn size={20} />
                 </a>
               </motion.div>
